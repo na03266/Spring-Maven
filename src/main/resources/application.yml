@@ -1,0 +1,7 @@
+spring:
+  #thymeleaf 설정
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/   # .html 파일 경로 (src/main/resources/templates)
+    suffix: .html   # 확장자
+    cache: false # default: true, 개발 시에는 false로 두는 것이 좋음
