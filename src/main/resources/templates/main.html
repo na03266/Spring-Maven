@@ -8,6 +8,14 @@
     <title>Document</title>
 </head>
 <body>
+<form action="" method="get">
+    <label>이름 :
+        <!--수정한 값을 남기고 싶을때, th:value를 씀-->
+        <input th:value="${name}" name="name" type="text">
+        <button type="submit">제출</button>
+    </label>
+
+</form>
     <h1 th:text="${messages}">이것이 뷰입니다.!!!</h1>
     <h1 th:text="${name}">이름</h1>
 </body>
