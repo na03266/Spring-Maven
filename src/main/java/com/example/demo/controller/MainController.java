@@ -20,12 +20,7 @@ public class MainController {
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
 
         List<Map<String, ?>> commentList = commentJdbcDAO.selectAllCommentList();
-        Map<String, ?> cmt = commentList.get(0);
-
-
-        model.addAttribute("no", cmt.get("no"));
-        model.addAttribute("author", cmt.get("author"));
-        model.addAttribute("comment", cmt.get("comment"));
+        model.addAttribute("commentList", commentList); //댓글 리스트를 view로 전달한다.
 
         return "main";
     }

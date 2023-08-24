@@ -1,27 +1,49 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Simple 댓글 서비스</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-<form action="" method="get">
-    <label>이름 :
-        <!--수정한 값을 남기고 싶을때, th:value를 씀-->
-        <input th:value="${name}" name="name" type="text">
-        <button type="submit">제출</button>
-    </label>
-
-</form>
-<ul>
-    <li th:text="${no}"></li>
-    <li th:text="${author}"></li>
-    <li th:text="${comment}"></li>
-</ul>
-<h1 th:text="${messages}">이것이 뷰입니다.!!!</h1>
-<h1 th:text="${name}">이름</h1>
+<div id="form" class="m-5 p-5 border">
+    <h1>댓글 작성</h1>
+    <form action="">
+        <div class="input-group">
+            <input class="form-control" type="text" name="author" placeholder="작성자 이름">
+            <input class="form-control" type="text" name="comment" placeholder="댓글 내용 입력">
+            <button class="btn btn-outline-secondary" type="submit">등록</button>
+        </div>
+    </form>
+</div>
+<div id="list" class="m-5 p-5 border">
+    <h1>댓글 목록</h1>
+    <table class="table table-hover">
+        <tr th:each="comment : ${commentList}">
+            <td th:text="${comment.no}">번호</td>
+            <td>작성자</td>
+            <td>댓글</td>
+            <td>날짜</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>스프링</td>
+            <td>안녕하세요~</td>
+            <td>2023-08-17</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>스프링</td>
+            <td>안녕하세요~</td>
+            <td>2023-08-17</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>스프링</td>
+            <td>안녕하세요~</td>
+            <td>2023-08-17</td>
+        </tr >
+    </table>
+</div>
 </body>
 </html>
