@@ -20,16 +20,16 @@
     <h1>댓글 목록</h1>
     <table class="table table-hover">
         <tr th:each="comment : ${commentList}">
-            <td th:text="${comment.no}">번호</td>
-            <td>작성자</td>
-            <td>댓글</td>
-            <td>날짜</td>
+            <th>번호</th>
+            <th>작성자</th>
+            <th>댓글</th>
+            <th>날짜</th>
         </tr>
         <tr>
-            <td>1</td>
-            <td>스프링</td>
-            <td>안녕하세요~</td>
-            <td>2023-08-17</td>
+            <td th:text="${comment.no}" >1</td>
+            <td th:text="${comment.no}" >스프링</td>
+            <td th:text="${comment.no}" >안녕하세요~</td>
+            <td th:text="${comment.no}" >2023-08-17</td>
         </tr>
         <tr>
             <td>1</td>
