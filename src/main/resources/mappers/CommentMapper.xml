@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.demo.dao.CommentDAO">
 
-    <select id="selectAllComment" resultType="com.example.demo.model.CommentModel">
+    <select id="selectAllCommentList" resultType="com.example.demo.model.CommentModel">
         select * from tb_comment;
     </select>
 
