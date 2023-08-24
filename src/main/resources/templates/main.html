@@ -24,24 +24,12 @@
             <th>댓글</th>
             <th>날짜</th>
         </tr>
-        <tr th:each="comment: ${commentList}">
+        <tr th:each="comment : ${commentList}">
             <td th:text="${comment.no}" >1</td>
             <td th:text="${comment.author}" >스프링</td>
             <td th:text="${comment.comment}" >안녕하세요~</td>
             <td th:text="${comment.date}" >2023-08-17</td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>스프링</td>
-            <td>안녕하세요~</td>
-            <td>2023-08-17</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>스프링</td>
-            <td>안녕하세요~</td>
-            <td>2023-08-17</td>
-        </tr >
     </table>
 </div>
 </body>
