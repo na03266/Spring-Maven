@@ -11,4 +11,9 @@
         INSERT INTO tb_comment (author, comment, date)
         VALUES (#{author}, #{comment}, now());
     </insert>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM spring_db.tb_comment WHERE no = #{no};
+    </delete>
+
 </mapper>

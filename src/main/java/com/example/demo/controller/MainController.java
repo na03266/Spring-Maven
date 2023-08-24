@@ -5,9 +5,7 @@ import com.example.demo.model.CommentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 /*
@@ -38,6 +36,14 @@ public class MainController {
         System.out.println(commentModel.getComment());
 
         commentDAO.insertComment(commentModel);
+        return "redirect:/";
+    }
+
+    @DeleteMapping("/comments/{no}")
+    public String deleteComment(@PathVariable int no){
+
+        commentDAO.deleteComment(no);
+
         return "redirect:/";
     }
 }
