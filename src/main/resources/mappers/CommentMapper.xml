@@ -7,4 +7,8 @@
         select * from tb_comment;
     </select>
 
+    <insert id="insertComment" parameterType="com.example.demo.model.CommentModel">
+        INSERT INTO tb_comment (author, comment, date)
+        VALUES (#{author}, #{comment}, now());
+    </insert>
 </mapper>

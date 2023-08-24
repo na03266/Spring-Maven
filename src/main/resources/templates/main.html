@@ -7,10 +7,10 @@
 <body>
 <div id="form" class="m-5 p-5 border">
     <h1>댓글 작성</h1>
-    <form action="">
+    <form action="/comments" method="post">
         <div class="input-group">
-            <input class="form-control" type="text" name="author" placeholder="작성자 이름">
-            <input class="form-control" type="text" name="comment" placeholder="댓글 내용 입력">
+            <input class="form-control" type="text" name="author" value="작성자" placeholder="작성자 이름">
+            <input class="form-control" type="text" name="comment" value="" placeholder="댓글 내용 입력">
             <button class="btn btn-outline-secondary" type="submit">등록</button>
         </div>
     </form>

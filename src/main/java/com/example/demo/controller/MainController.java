@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -29,5 +30,14 @@ public class MainController {
         model.addAttribute("commentList", cmList); //댓글 리스트를 view로 전달한다.
 
         return "main";
+    }
+    @PostMapping("/comments")
+    public String createComment(CommentModel commentModel){
+
+        System.out.println(commentModel.getAuthor());
+        System.out.println(commentModel.getComment());
+
+        commentDAO.insertComment(commentModel);
+        return "redirect:/";
     }
 }
