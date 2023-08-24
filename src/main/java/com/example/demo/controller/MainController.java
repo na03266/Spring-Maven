@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.CommentDAO;
-import com.example.demo.dao.CommentJdbcDAO;
 import com.example.demo.model.CommentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,9 +14,6 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private CommentJdbcDAO commentJdbcDAO;
-
-    @Autowired
     private CommentDAO commentDAO;
 
     /*
@@ -25,8 +21,6 @@ public class MainController {
      */
     @GetMapping("/")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
-
-        //List<Map<String, ?>> commentList = commentJdbcDAO.selectAllCommentList();
 
         List<CommentModel> cmList = commentDAO.selectAllCommentList();
 

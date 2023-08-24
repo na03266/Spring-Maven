@@ -11,9 +11,9 @@ spring:
     static-path-pattern: /static/** # spring mvc 정적 파일들의 경로 (css, js파일 등)
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:4306/spring_db # spring_db 부분은 설정한 DB명과 맞춘다.
+    url: jdbc:mariadb://127.0.0.1:4306/spring_db
     username: root
-    #password: password # 비밀 번호가 있을 경우 설정한다.
+    #password: password
 mybatis:
   mapper-locations:
     - classpath:mappers/*.xml
@@ -22,4 +22,4 @@ mybatis:
 server:
   servlet:
     context-path: /
-  port: 8080 # 웹 서버의 포트 번호
+  port: 8080
