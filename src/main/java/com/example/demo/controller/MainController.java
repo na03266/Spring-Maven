@@ -17,12 +17,7 @@ public class MainController {
     @Autowired
     private CommentDAO commentDAO;
 
-    @GetMapping("/api/comment/{no}")
-    @ResponseBody
-    public CommentModel getComment(@PathVariable int no){ //주소에 있는 변수를 가져오는 애너테이션
-        CommentModel comment = commentDAO.selectComment(no);
-        return comment;
-    }
+
     /*
         메인 페이지 - 댓글 목록 표시
      */
