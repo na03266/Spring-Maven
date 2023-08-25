@@ -59,7 +59,7 @@ public class MainController {
         return "comment-form";
     }
 
-    @GetMapping("/comment/{no}")
+    @GetMapping("/comment/{no}") //원래는  putmapping을 써야하지만, html만 사용할 경우에는 post와 get메소드만 사용함
     public String modifyComment(@PathVariable int no, CommentModel commentModel){
 
         //댓글 정보 update 처리
