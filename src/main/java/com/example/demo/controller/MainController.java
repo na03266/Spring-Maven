@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.CommentDAO;
 import com.example.demo.model.CommentModel;
+import com.example.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private CommentDAO commentDAO;
+    private CommentService commentService;
 
 
     /*
@@ -24,7 +25,7 @@ public class MainController {
     @GetMapping("/")
     public String hello(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
 
-        List<CommentModel> cmList = commentDAO.selectAllCommentList();
+        List<CommentModel> cmList = commentService.getAllCommentList();
 
         model.addAttribute("commentList", cmList); //댓글 리스트를 view로 전달한다.
 
@@ -38,7 +39,7 @@ public class MainController {
         System.out.println(commentModel.getAuthor());
         System.out.println(commentModel.getComment());
 
-        commentDAO.insertComment(commentModel);
+        commentService.createComment(commentModel);
         return "redirect:/";
     }
 
@@ -46,26 +47,28 @@ public class MainController {
     @DeleteMapping("/comments/{no}")
     public String deleteComment(@PathVariable int no){
 
-        commentDAO.deleteComment(no);
+        commentService.deleteComment(no);
 
         return "redirect:/";
     }
 
+    //댓글 수정 화면 요청 처리
     @GetMapping("/comments/{no}")//화면은 겟매핑
     public String modifyCommentForm(@PathVariable int no, Model model){
 
-        CommentModel comment = commentDAO.selectComment(no);
+        CommentModel comment = commentService.getComment(no);
         model.addAttribute("comment", comment);
 
         return "comment-form";
     }
 
-    @GetMapping("/comment/{no}") //원래는  putmapping을 써야하지만, html만 사용할 경우에는 post와 get메소드만 사용함55555555555555555555
+    //댓글 수정 요청 처리
+    @GetMapping("/comment/{no}") //원래는  putmapping을 써야하지만, html만 사용할 경우에는 post와 get메소드만 사용함
     public String modifyComment(@PathVariable int no, CommentModel commentModel){
 
         //댓글 정보 update 처리
         commentModel.setNo(no);
-        commentDAO.updateComment(commentModel);
+        commentService.updateComment(commentModel);
 
         return "redirect:/";
     }
