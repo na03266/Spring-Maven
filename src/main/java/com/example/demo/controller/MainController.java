@@ -27,7 +27,7 @@ public class MainController {
 
         model.addAttribute("commentList", cmList); //댓글 리스트를 view로 전달한다.
 
-        return "main";
+        return "main"; //뷰의 위치! getmapping일때만!
     }
     @PostMapping("/comments")
     public String createComment(CommentModel commentModel){

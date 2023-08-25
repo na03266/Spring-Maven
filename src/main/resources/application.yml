@@ -11,9 +11,9 @@ spring:
     static-path-pattern: /static/** # spring mvc 정적 파일들의 경로 (css, js파일 등)
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:4306/spring_db
-    username: root
-    #password: password
+    url: jdbc:mariadb://localhost:4306/spring_db
+    username: spring
+    password: spring-pw
 mybatis:
   mapper-locations:
     - classpath:mappers/*.xml
