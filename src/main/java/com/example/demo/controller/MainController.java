@@ -29,6 +29,8 @@ public class MainController {
 
         return "main"; //뷰의 위치! getmapping일때만!
     }
+
+    // 댓글 등록 처리
     @PostMapping("/comments")
     public String createComment(CommentModel commentModel){
 
@@ -39,10 +41,30 @@ public class MainController {
         return "redirect:/";
     }
 
+    //댓글 삭제 처리
     @DeleteMapping("/comments/{no}")
     public String deleteComment(@PathVariable int no){
 
         commentDAO.deleteComment(no);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/comments/{no}")//화면은 겟매핑
+    public String modifyCommentForm(@PathVariable int no, Model model){
+
+        CommentModel comment = commentDAO.selectComment(no);
+        model.addAttribute("comment", comment);
+
+        return "comment-form";
+    }
+
+    @GetMapping("/comment/{no}")
+    public String modifyComment(@PathVariable int no, CommentModel commentModel){
+
+        //댓글 정보 update 처리
+        commentModel.setNo(no);
+        commentDAO.updateComment(commentModel);
 
         return "redirect:/";
     }

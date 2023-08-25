@@ -4,13 +4,18 @@ import com.example.demo.model.CommentModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import javax.xml.stream.events.Comment;
 import java.util.List;
 
 @Mapper
 public interface CommentDAO {
     List<CommentModel> selectAllCommentList();
 
+    CommentModel selectComment(@Param("no") int no);
+
     void insertComment(CommentModel comment);
 
     void deleteComment(@Param("no") int no);
+
+    void updateComment(CommentModel comment);
 }

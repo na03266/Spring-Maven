@@ -7,6 +7,10 @@
         select * from tb_comment;
     </select>
 
+    <select id="selectComment" resultType="com.example.demo.model.CommentModel">
+        select * from tb_comment WHERE no = #{no};
+    </select>
+
     <insert id="insertComment" parameterType="com.example.demo.model.CommentModel">
         INSERT INTO tb_comment (author, comment, date)
         VALUES (#{author}, #{comment}, now());
@@ -15,5 +19,9 @@
     <delete id="deleteComment" parameterType="int">
         DELETE FROM spring_db.tb_comment WHERE no = #{no};
     </delete>
+
+    <update id="updateComment" parameterType="com.example.demo.model.CommentModel">
+        UPDATE tb_comment SET author=#{author}, comment=#{comment} WHERE no = #{no};
+    </update>
 
 </mapper>
