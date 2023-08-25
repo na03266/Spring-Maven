@@ -17,6 +17,12 @@ public class MainController {
     @Autowired
     private CommentDAO commentDAO;
 
+    @GetMapping("/api/comment/{no}")
+    @ResponseBody
+    public CommentModel getComment(@PathVariable int no){ //주소에 있는 변수를 가져오는 애너테이션
+        CommentModel comment = commentDAO.selectComment(no);
+        return comment;
+    }
     /*
         메인 페이지 - 댓글 목록 표시
      */
@@ -59,7 +65,7 @@ public class MainController {
         return "comment-form";
     }
 
-    @GetMapping("/comment/{no}") //원래는  putmapping을 써야하지만, html만 사용할 경우에는 post와 get메소드만 사용함
+    @GetMapping("/comment/{no}") //원래는  putmapping을 써야하지만, html만 사용할 경우에는 post와 get메소드만 사용함55555555555555555555
     public String modifyComment(@PathVariable int no, CommentModel commentModel){
 
         //댓글 정보 update 처리
