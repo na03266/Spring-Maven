@@ -18,10 +18,7 @@ public class MainController {
     @Autowired
     private CommentService commentService;
 
-
-    /*
-        메인 페이지 - 댓글 목록 표시
-     */
+    //댓글의 목록 표시
     @GetMapping("/")
     public String hello(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
 
