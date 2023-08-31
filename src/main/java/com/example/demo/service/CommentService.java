@@ -25,8 +25,10 @@ public class CommentService {
     }
 
     // 댓글 등록
-    public void createComment(CommentModel commentModel) {
+    public int createComment(CommentModel commentModel) {
+
         commentDAO.insertComment(commentModel);
+        return commentModel.getNo();
     }
 
     //덧글 수정

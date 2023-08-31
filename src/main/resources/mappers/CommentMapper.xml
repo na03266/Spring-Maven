@@ -11,7 +11,7 @@
         select * from tb_comment WHERE no = #{no};
     </select>
 
-    <insert id="insertComment" parameterType="com.example.demo.model.CommentModel">
+    <insert id="insertComment" parameterType="com.example.demo.model.CommentModel" useGeneratedKeys="true" keyProperty="no">
         INSERT INTO tb_comment (author, comment, date)
         VALUES (#{author}, #{comment}, now());
     </insert>
