@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class CommentModel {
     private int no;
     //@JsonIgnore //리스폰스 바디로 호출했을때 api가 내려가면 안되는건 이렇게 씀
+
     private String author;
     private String comment;
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm") // 시간의 자료형을 수정해서 전송

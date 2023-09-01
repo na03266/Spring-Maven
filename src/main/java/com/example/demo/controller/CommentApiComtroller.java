@@ -31,6 +31,7 @@ public class CommentApiComtroller {
         return commentService.getComment(no);
     }
 
+//@ RequestParam 외부에서 들어오는 값(?hello=hi)을 그대로 출력(hi)
     //댓글 수정 API
     @PutMapping("/api/comment/{no}")
     public CommentModel ModifyComment(@RequestBody CommentModel comment, @PathVariable int no) {

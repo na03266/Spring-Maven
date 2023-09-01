@@ -5,9 +5,12 @@ import com.example.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CommentController {
@@ -27,13 +30,22 @@ public class CommentController {
 
     // 댓글 등록 처리
     @PostMapping("/comments")
-    public String createComment(CommentModel commentModel) {
+    public String createComment(CommentModel commentModel ) {
 
         System.out.println(commentModel.getAuthor());
         System.out.println(commentModel.getComment());
 
         commentService.createComment(commentModel);
         return "redirect:/";
+    }
+
+    //에러 처리기
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public String handleError(Model model, MethodArgumentNotValidException ex){
+
+        Optional.ofNullable(ex.getFieldError()).map(FieldError::getDefaultMessage).orElse("");
+        model.addAttribute("message", ex.getFieldError().getDefaultMessage());
+        return "error";
     }
 
     //댓글 수정 화면 요청 처리
