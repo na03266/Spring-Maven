@@ -14,4 +14,5 @@ public class CommentModel {
     private String comment;
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm") // 시간의 자료형을 수정해서 전송
     private LocalDateTime date;
+    //@Deprecated 삭제될 예정임을 알려주는 애너테이션
 }

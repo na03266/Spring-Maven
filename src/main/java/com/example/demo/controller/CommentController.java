@@ -36,14 +36,6 @@ public class CommentController {
         return "redirect:/";
     }
 
-    //댓글 삭제 처리
-    @DeleteMapping("/comments/{no}")
-    public String deleteComment(@PathVariable int no) {
-        commentService.deleteComment(no);
-
-        return "redirect:/";
-    }
-
     //댓글 수정 화면 요청 처리
     @GetMapping("/comments/{no}")//화면은 겟매핑
     public String modifyCommentForm(@PathVariable int no, Model model) {

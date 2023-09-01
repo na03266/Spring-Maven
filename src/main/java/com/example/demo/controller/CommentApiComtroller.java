@@ -36,6 +36,11 @@ public class CommentApiComtroller {
     public CommentModel ModifyComment(@RequestBody CommentModel comment, @PathVariable int no) {
         comment.setNo(no);
         commentService.updateComment(comment);
-        return comment;
+        return getComment(comment.getNo());
+    }
+
+    @DeleteMapping("/api/comment/{no}")
+    public void DeleteComment(@PathVariable int no){
+        commentService.deleteComment(no);
     }
 }

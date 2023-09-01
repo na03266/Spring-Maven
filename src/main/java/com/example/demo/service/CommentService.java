@@ -26,17 +26,16 @@ public class CommentService {
 
     // 댓글 등록
     public int createComment(CommentModel commentModel) {
-
         commentDAO.insertComment(commentModel);
         return commentModel.getNo();
     }
 
-    //덧글 수정
+    //댓글 수정
     public void updateComment(CommentModel commentModel) {
         commentDAO.updateComment(commentModel);
     }
 
-    //덧글 삭제
+    //댓글 삭제
     public void deleteComment(int no) {
         commentDAO.deleteComment(no);
     }
