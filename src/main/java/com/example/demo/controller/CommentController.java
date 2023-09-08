@@ -3,12 +3,15 @@ package com.example.demo.controller;
 import com.example.demo.model.CommentModel;
 import com.example.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,13 @@ public class CommentController {
     //댓글의 목록 표시
     @GetMapping("/comments")
     public String hello(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal != null){
+
+
+        model.addAttribute("userName", ((Principal) principal).getName());
+        }
 
         List<CommentModel> cmList = commentService.getAllCommentList();
 
