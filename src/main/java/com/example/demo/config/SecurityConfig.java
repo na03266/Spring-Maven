@@ -14,8 +14,10 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
+                .authorizeHttpRequests((request)-> request.requestMatchers(new AntPathRequestMatcher("/comment/*")).authenticated())
                 .authorizeHttpRequests((request)-> request.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .csrf((csrf)-> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
+                .formLogin((formLogin)-> formLogin.defaultSuccessUrl("/"))
 
         ;
 
