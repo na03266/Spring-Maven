@@ -23,25 +23,26 @@ public class CommentApiComtroller {
     }
 
     //댓글 등록 API
-    @PostMapping
+    @PostMapping("/api/comments")
     public CommentModel postComment(@RequestBody CommentModel comment) {
 
         //등록 처리
-        int no = commentService.createComment(comment);
-        return commentService.getComment(no);
+        return commentService.createComment(comment);
     }
 
 //@ RequestParam 외부에서 들어오는 값(?hello=hi)을 그대로 출력(hi)
+
     //댓글 수정 API
     @PutMapping("/api/comment/{no}")
-    public CommentModel ModifyComment(@RequestBody CommentModel comment, @PathVariable int no) {
+    public CommentModel modifyComment(@RequestBody CommentModel comment, @PathVariable int no) {
         comment.setNo(no);
-        commentService.updateComment(comment);
-        return getComment(comment.getNo());
+        return commentService.updateComment(comment);
     }
 
+    //댓글 삭제 API
     @DeleteMapping("/api/comment/{no}")
-    public void DeleteComment(@PathVariable int no){
+    public String deleteComment(@PathVariable int no){
         commentService.deleteComment(no);
+        return "OK";
     }
 }
