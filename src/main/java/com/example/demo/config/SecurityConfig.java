@@ -17,7 +17,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests((request)-> request.requestMatchers(new AntPathRequestMatcher("/comment/*")).authenticated())
                 .authorizeHttpRequests((request)-> request.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .csrf((csrf)-> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
-                .formLogin((formLogin)-> formLogin.defaultSuccessUrl("/"))
+                .formLogin((formLogin)-> formLogin
+                        .defaultSuccessUrl("/"))
+                .logout((logout)-> logout.logoutRequestMatcher(new AntPathRequestMatcher("/users/logout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true))
 
         ;
 
