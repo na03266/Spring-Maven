@@ -1,7 +1,12 @@
 package com.example.demo.model;
 
+import com.example.demo.validator.Author;
+import com.example.demo.validator.PreventFuxx;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;

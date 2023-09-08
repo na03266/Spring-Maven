@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CommentModel;
+import com.example.demo.model.LoginUser;
 import com.example.demo.service.CommentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,7 +45,7 @@ public class CommentController {
     // 댓글 등록 처리
     @PostMapping("/comments")
     public String createComment(@Valid CommentModel commentModel, BindingResult bindingResult,
-                                @AuthenticationPrincipal LoginUser user,  Model model) {
+                                @AuthenticationPrincipal LoginUser user, Model model) {
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("errMessage", bindingResult.getFieldError().getDefaultMessage());
             return getComments(model, commentModel, user);
