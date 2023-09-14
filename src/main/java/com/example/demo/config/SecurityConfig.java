@@ -15,12 +15,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig {
-        // 스프링 시큐리티에 대한 설정을 이곳에서 관리
+    // 스프링 시큐리티에 대한 설정을 이곳에서 관리
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 //.authorizeHttpRequests((request) -> request.requestMatchers(new AntPathRequestMatcher("/comments/*")).hasAuthority("ROLE_ADMIN"))
-                .authorizeHttpRequests((request) -> request.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+                .authorizeHttpRequests((request) -> request
+                        .requestMatchers(new AntPathRequestMatcher("/comment/*")).hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
                 .formLogin((formLogin) -> formLogin
                         .defaultSuccessUrl("/"))
