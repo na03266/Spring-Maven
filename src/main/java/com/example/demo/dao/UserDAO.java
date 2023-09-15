@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserDAO {
-    void insertUser(UserModel userModel);
+    void insertUser(UserModel user);
 
     UserModel selectUser(@Param("userId") String userId);
 }

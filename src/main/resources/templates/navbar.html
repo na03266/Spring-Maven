@@ -1,34 +1,35 @@
-<nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: #e3f2fd;" data-bs-theme="light"
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark"
      xmlns:sec="http://www.w3.org/1999/xhtml">
-    <div class="container-fluid">
+    <div class="container-fluid mw-1200 py-2">
         <a class="navbar-brand" href="/">Simple 댓글 서비스</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
-                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarColor03">
+        <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">홈</a>
                 </li>
-                <li class="nav-item">
-                    <a sec:authorize="!isAuthenticated()" class="nav-link" href="/users/join">회원가입</a>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/users/join">회원가입</a>
                 </li>
-                <li class="nav-item">
-                    <a sec:authorize="!isAuthenticated()" class="nav-link" href="/users/login">로그인</a>
-
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/users/login">로그인</a>
                 </li>
-                <li class="nav-item">
-                    <a sec:authorize="isAuthenticated()" class="nav-link" href="/userts/logout">로그아웃</a>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/users/logout">로그아웃</a>
                 </li>
             </ul>
 
-            <span th:text="">
-                xxx님 환영합니다.
+            <span sec:authorize="isAuthenticated()" class="navbar-text" style="margin-right: 20px;">
+                <span class="navbar-text" sec:authentication="principal.nickName"></span>(<span sec:authentication="principal.email"></span>)
+                님 환영합니다.
             </span>
+
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Search</button>
+                <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>
     </div>

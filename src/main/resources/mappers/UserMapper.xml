@@ -4,7 +4,7 @@
 <mapper namespace="com.example.demo.dao.UserDAO">
     <insert id="insertUser" parameterType="com.example.demo.model.UserModel">
         INSERT INTO tb_user (user_id, user_name, password, email, join_datetime)
-        values (#{userId}, #{userName}, #{password}, #{email}, now());
+        VALUES (#{userId} , #{userName}, #{password}, #{email}, now());
     </insert>
 
     <select id="selectUser" parameterType="string" resultType="com.example.demo.model.UserModel">

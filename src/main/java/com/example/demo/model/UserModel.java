@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -9,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Data
 public class UserModel {
-
     @Size(min = 3, max = 15)
     @NotEmpty(message = "사용자 ID는 필수 항목입니다.")
     private String userId;
@@ -24,4 +22,5 @@ public class UserModel {
 
     private String email;
     private LocalDateTime joinDatetime;
+
 }

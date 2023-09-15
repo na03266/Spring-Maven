@@ -1,24 +1,24 @@
 spring:
   profiles:
     active: local
-  #thymeleaf 설정
+  #thymeleaf 설정  \uC124\uC815c
   thymeleaf:
     check-template-location: true
-    prefix: classpath:/templates/   # .html 파일 경로 (src/main/resources/templates)
-    suffix: .html   # 확장자
-    cache: false # default: true, 개발 시에는 false로 두는 것이 좋음
+    prefix: classpath:/templates/   # .html 파일 경로 (src/main/resources/templates) \uC124\uC815
+    suffix: .html   # 확장자 \uD655\uC7A5\uC790
+    cache: false # default: true, 개발 시에는 false로 두는 것이 좋음 \uAC1C\uBC1C \uC2DC\uC5D0\uB294 false\uB85C \uB450\uB294 \uAC83\uC774 \uC88B\uC74C
   mvc:
-    static-path-pattern: /static/** # spring mvc 정적 파일들의 경로 (css, js파일 등)
+    static-path-pattern: /static/** # spring mvc 정적 파일들의 경로 (css, js파일 등) \uC815\uC801 \uD30C\uC77C\uB4E4\uC758 \uACBD\uB85C (css, js\uD30C\uC77C \uB4F1)
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:4406/spring_db
+    url: jdbc:mariadb://localhost:4306/spring_db # spring_db \uBD80\uBD84\uC740 \uC124\uC815\uD55C DB\uBA85\uACFC \uB9DE\uCD98\uB2E4.
     username: spring
     password: spring-pw
 mybatis:
   mapper-locations:
     - classpath:mappers/*.xml
   configuration:
-    map-underscore-to-camel-case: true # (DB)value_name -> (Java)valueName 자동 매핑
+    map-underscore-to-camel-case: true # (DB)value_name -> (Java)valueName 자동 매핑 (Java)valueName \uC790\uB3D9 \uB9E4\uD551
 server:
   servlet:
     context-path: /

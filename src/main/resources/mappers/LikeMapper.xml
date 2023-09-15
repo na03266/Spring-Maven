@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.LikeDAO">
+
+    <select id="selectLikeCount" resultType="int">
+        select ifnull((SELECT count FROM tb_like WHERE content_type = #{contentType} and content_no = #{contentNo}), 0)
+    </select>
+
+    <insert id="insertLike">
+        INSERT INTO tb_like (content_type, content_no)
+        VALUES(#{contentType}, #{contentNo});
+    </insert>
+
+    <delete id="deleteLike">
+        DELETE FROM tb_like WHERE content_type = #{contentType} and content_no = #{contentNo}
+    </delete>
+
+    <update id="increaseLikeCount">
+        update tb_like set count = count +1 WHERE content_type = #{contentType} and content_no = #{contentNo};
+    </update>
+
+</mapper>

@@ -3,25 +3,25 @@
 
 <mapper namespace="com.example.demo.dao.CommentDAO">
 
-    <select id="selectAllCommentList" resultType="com.example.demo.model.CommentModel">
-        select * from tb_comment;
+    <select id="selectAllComment" resultType="com.example.demo.model.CommentModel">
+        select c.*, l.count as like_count from tb_comment c
+                                                   left join tb_like l ON l.content_type = 'COMMENT' and l.content_no = c.no;
     </select>
 
     <select id="selectComment" resultType="com.example.demo.model.CommentModel">
-        select * from tb_comment WHERE no = #{no};
+        SELECT * FROM tb_comment WHERE no = #{no};
     </select>
 
     <insert id="insertComment" parameterType="com.example.demo.model.CommentModel" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO tb_comment (author, comment, date)
-        VALUES (#{author}, #{comment}, now());
+        INSERT INTO tb_comment (author, comment, user_id, reg_datetime)
+        VALUES(#{author}, #{comment}, #{userId}, now());
     </insert>
 
     <delete id="deleteComment" parameterType="int">
-        DELETE FROM spring_db.tb_comment WHERE no = #{no};
+        DELETE FROM tb_comment WHERE no = #{no};
     </delete>
 
     <update id="updateComment" parameterType="com.example.demo.model.CommentModel">
-        UPDATE tb_comment SET author=#{author}, comment=#{comment} WHERE no = #{no};
+        UPDATE tb_comment SET author=#{author}, comment=#{comment}, mod_datetime=now() WHERE no = #{no};
     </update>
-
 </mapper>

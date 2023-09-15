@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
     @Autowired
     private UserDAO userDAO;
 
@@ -18,13 +17,15 @@ public class UserService {
     public void insertUser(UserModel user) {
         // 회원 가입 시 가공할 데이터는 여기에서 처리한다.
 
-        // 패스워드 암호화 처리
-
-        String encodedPW = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPW);
+        // 패스워드 암호화
+        encryptPassword(user);
 
         userDAO.insertUser(user);
+    }
 
+    private void encryptPassword(UserModel user) {
+        String encodedPw = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPw);
     }
 
     public UserModel selectUserByUserId(String userId) {
