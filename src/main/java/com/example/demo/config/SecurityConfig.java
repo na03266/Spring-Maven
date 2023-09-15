@@ -26,7 +26,11 @@ public class SecurityConfig {
                 .csrf((csrf) -> csrf
                         .ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
                 .formLogin((formLogin) -> formLogin/*로그인 url 설정*/
+                        .loginPage("/users/login")
+                        .usernameParameter("userId")
+                        .passwordParameter("password")
                         .defaultSuccessUrl("/"))
+
                 .logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/users/logout"))
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true))

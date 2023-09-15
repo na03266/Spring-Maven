@@ -16,7 +16,11 @@ public class UserController {
     @Autowired
     private UserService userService;
     //로그인 페이지
+    @GetMapping("/users/login")
+    public String login(){
 
+        return "login";
+    }
     //회원 등록 페이지
     @GetMapping("/users/join")
     public String joinPage(){
@@ -31,7 +35,7 @@ public class UserController {
         } catch (DataIntegrityViolationException ex) {
             model.addAttribute("user", user);
             model.addAttribute("errMessage", "이미 사용중인 사용자 ID입니다.");
-            return "join_form";
+            return "join";
         }
 
         return "redirect:/";
