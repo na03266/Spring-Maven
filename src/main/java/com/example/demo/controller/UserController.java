@@ -20,7 +20,7 @@ public class UserController {
     public String login(){
 
         return "login";
-    }
+    }/*시큐리티가 알아서 처리하기 때문에 로그인 처리 페이지는 만들지 않음!*/
     //회원 등록 페이지
     @GetMapping("/users/join")
     public String joinPage(){
