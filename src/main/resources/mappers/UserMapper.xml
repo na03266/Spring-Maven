@@ -8,6 +8,6 @@
     </insert>
 
     <select id="selectUser" parameterType="string" resultType="com.example.demo.model.UserModel">
-
+        SELECT * FROM tb_user WHERE user_id = #{userId};
     </select>
 </mapper>

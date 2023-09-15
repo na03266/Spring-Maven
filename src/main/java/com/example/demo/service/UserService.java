@@ -13,21 +13,21 @@ public class UserService {
     private UserDAO userDAO;
 
     @Autowired
-   private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-  void insertUser(UserModel user){
+    public void insertUser(UserModel user) {
         // 회원 가입 시 가공할 데이터는 여기에서 처리한다.
 
         // 패스워드 암호화 처리
 
-      String encodedPW = passwordEncoder.encode(user.getClass());
-      user.setPassword(encodedPW);
+        String encodedPW = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPW);
 
         userDAO.insertUser(user);
 
     }
 
-    UserModel selectUserByUserId(String userId){
+    public UserModel selectUserByUserId(String userId) {
         return userDAO.selectUser(userId);
     }
 }

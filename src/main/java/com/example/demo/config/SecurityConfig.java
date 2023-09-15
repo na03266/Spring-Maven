@@ -23,8 +23,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers(new AntPathRequestMatcher("/comment/*")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-                .csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
-                .formLogin((formLogin) -> formLogin
+                .csrf((csrf) -> csrf
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
+                .formLogin((formLogin) -> formLogin/*로그인 url 설정*/
                         .defaultSuccessUrl("/"))
                 .logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/users/logout"))
                         .logoutSuccessUrl("/")
