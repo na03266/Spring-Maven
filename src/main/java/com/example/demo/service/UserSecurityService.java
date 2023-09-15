@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.enums.UserRole;
 import com.example.demo.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,11 +27,14 @@ public class UserSecurityService implements UserDetailsService {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
 
+        /*롤 어드민에 해당하는 한국어는 뭐야!*/
+//        UserRole.findBy("ROLE_ADMIN").getValuekor(); //관리자
+
         if ("admin".equals(username)) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+            authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
+            authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
         } else {
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+            authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
         }
 
         return new LoginUser(username, passwordEncoder.encode("1234"),"사용자이름", authorities);

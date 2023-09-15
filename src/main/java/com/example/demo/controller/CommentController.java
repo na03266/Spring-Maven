@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.enums.UserRole;
 import com.example.demo.model.CommentModel;
 import com.example.demo.model.LoginUser;
 import com.example.demo.service.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,8 +59,7 @@ public class CommentController {
     }
 
     //댓글 수정 화면 요청 처리
-    //@Secured({"ROLE_ADMIN", "ROLE_USER"})
-
+    @Secured("ROLE_ADMIN")
     @GetMapping("/comments/{no}")//화면은 겟매핑
     public String modifyCommentForm(@PathVariable int no, Principal principal, Model model) throws Exception {
         System.out.println("로그인 한 사용자: " + Optional.ofNullable(principal).map(Principal::getName).orElse("로그인안함"));

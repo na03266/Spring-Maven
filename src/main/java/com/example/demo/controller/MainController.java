@@ -13,4 +13,6 @@ public class MainController {
     public String mainPage(){
         return "redirect:/comment";
     }
+
+
 }
