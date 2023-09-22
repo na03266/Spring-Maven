@@ -4,6 +4,7 @@ import com.example.demo.model.CommentModel;
 import com.example.demo.service.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ public class CommentController {
 
     // 댓글 목록 화면
     @GetMapping("/comments")
+    @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String getComments(Model model, CommentModel commentModel) {
         // 로그인 유저 정보를 구하는 첫번째 방법 https://github.com/ttaengz/spring-study/blob/main/docs/08%20%EC%9D%B8%EC%A6%9D%20(Spring%20Security)%20-%202%EB%B6%80.md#securitycontextholder%EC%97%90%EC%84%9C-%EA%BA%BC%EB%82%B4%EC%98%A4%EA%B8%B0
 //        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -29,6 +29,7 @@ public class CommentService {
     // 모든 댓글 목록
     public List<CommentModel> getAllCommentList() {
         return commentDAO.selectAllComment();
+
     }
 
     // 댓글 등록
