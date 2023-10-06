@@ -21,5 +21,8 @@ mybatis:
     map-underscore-to-camel-case: true # (DB)value_name -> (Java)valueName 자동 매핑 (Java)valueName \uC790\uB3D9 \uB9E4\uD551
 server:
   servlet:
+
+
+
     context-path: /
   port: 8080

@@ -5,6 +5,7 @@ import com.example.demo.service.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ public class CommentController {
 
     // 댓글 목록 화면
     @GetMapping("/comments")
-    @PostAuthorize("hasRole('ROLE_ADMIN')")
+    @PostAuthorize("isAuthenticated() hasRole('ROLE_ADMIN')")
     public String getComments(Model model, CommentModel commentModel) {
         // 로그인 유저 정보를 구하는 첫번째 방법 https://github.com/ttaengz/spring-study/blob/main/docs/08%20%EC%9D%B8%EC%A6%9D%20(Spring%20Security)%20-%202%EB%B6%80.md#securitycontextholder%EC%97%90%EC%84%9C-%EA%BA%BC%EB%82%B4%EC%98%A4%EA%B8%B0
 //        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -61,6 +62,8 @@ public class CommentController {
     public String modifyCommentForm(@PathVariable int no, Model model) throws Exception {
 //        System.out.println("로그인한 사용자: " + Optional.ofNullable(principal).map(Principal::getName).orElse("로그인안함"));
 
+        // 검증
+
         CommentModel comment = commentService.getComment(no);
         model.addAttribute("comment", comment);
 
@@ -72,6 +75,7 @@ public class CommentController {
     }
 
     // 댓글 수정 요청 처리
+    @PreAuthorize("hasRole('ROLE_ADMIN') or (isAuthenticated() and (#commentModel.userId == principal.username))")
     @PostMapping("/comments/{no}")
     public String modifyComment(@PathVariable int no, @Valid CommentModel commentModel) {
         // 댓글 정보 update 처리
